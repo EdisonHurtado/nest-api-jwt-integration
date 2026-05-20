@@ -13,16 +13,16 @@ import {
 } from '@nestjs/swagger';
 
 import { AuthService }
-from './auth.service';
+  from './auth.service';
 
 import { LoginDto }
-from './dto/login.dto';
+  from './dto/login.dto';
 
 import { RegisterDto }
-from './dto/register.dto';
+  from './dto/register.dto';
 
 import { JwtAuthGuard }
-from './jwt-auth.guard';
+  from './jwt-auth.guard';
 
 @ApiTags('auth')
 
@@ -32,7 +32,7 @@ export class AuthController {
 
   constructor(
     private authService: AuthService,
-  ) {}
+  ) { }
 
   @Post('register')
 
@@ -56,7 +56,7 @@ export class AuthController {
     );
   }
 
-  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
 
   @UseGuards(JwtAuthGuard)
 
@@ -66,6 +66,9 @@ export class AuthController {
     @Req() req: any,
   ) {
 
-    return req.user;
+    console.log(req.headers);
+    return {
+      ok: true,
+    };
   }
 }

@@ -82,6 +82,7 @@ export class AuthService {
         user.password,
       );
 
+
     if (!passwordValid) {
 
       throw new UnauthorizedException(

@@ -33,7 +33,7 @@ from '../prisma/prisma.module';
         process.env.JWT_SECRET,
 
       signOptions: {
-        expiresIn: '1m',
+        expiresIn: '10m',
       },
     }),
   ],
@@ -47,6 +47,10 @@ from '../prisma/prisma.module';
     JwtStrategy,
   ],
 
+  exports: [
+    JwtModule,
+    PassportModule,
+  ],
 })
 
 export class AuthModule {}

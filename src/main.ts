@@ -3,10 +3,10 @@ import 'reflect-metadata';
 import 'dotenv/config';
 
 import { NestFactory }
-from '@nestjs/core';
+  from '@nestjs/core';
 
 import { ValidationPipe }
-from '@nestjs/common';
+  from '@nestjs/common';
 
 import {
   SwaggerModule,
@@ -14,9 +14,12 @@ import {
 } from '@nestjs/swagger';
 
 import { AppModule }
-from './app.module';
+  from './app.module';
 
 async function bootstrap() {
+
+
+
 
   const app =
     await NestFactory.create(
@@ -39,7 +42,14 @@ async function bootstrap() {
 
       .setVersion('1.0')
 
-      .addBearerAuth()
+      .addBearerAuth(
+        {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+        'access-token',
+      )
 
       .build();
 
@@ -61,5 +71,7 @@ async function bootstrap() {
     'Swagger: http://localhost:3000/docs',
   );
 }
+
+
 
 bootstrap();
